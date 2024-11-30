@@ -1,0 +1,510 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Pragati Foundation</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/icons/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/icons/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/icons/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'images/icons/site.webmanifest ' %}">
+
+        <!-- CSS FILES -->        
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
+<!--
+
+TemplateMo 581 Kind Heart Charity
+
+https://templatemo.com/tm-581-kind-heart-charity
+
+-->
+<style>
+.event-card {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3-column grid */
+    gap: 10px;
+    flex: 1;
+    padding: 10px;
+}
+
+.image-item img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.image-item img:hover {
+    transform: scale(1.05);
+}
+
+.event-description {
+    flex: 1;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.event-description h2 {
+    margin-bottom: 10px;
+}
+
+.event-description p {
+    margin-bottom: 5px;
+}
+
+
+/* General styling */
+.events {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Event row containing description and images */
+.event-row {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+/* Event description on the left */
+.event-description {
+    flex: 40%; /* Takes up 40% of the width */
+    padding-right: 20px;
+}
+
+/* Event images section on the right */
+.event-images {
+    flex: 60%; /* Takes up 60% of the width */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 33.33%; /* 3-column layout */
+    padding: 0 4px;
+}
+
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%; /* Ensure images take up full width of column */
+}
+
+.event-images img {
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* Styling for buttons (if needed) */
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btn:hover {
+    background-color: #ddd;
+}
+
+.btn.active {
+    background-color: #666;
+    color: white;
+}
+
+/* Container for pagination controls */
+/* General pagination container */
+.pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Pagination buttons (First, Previous, Next, Last) */
+.pagination-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows buttons to wrap if too many to fit in one line */
+    gap: 10px; /* Adds space between buttons */
+    margin-bottom: 10px;
+}
+
+/* Page number links */
+.pagination-numbers {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows page numbers to wrap on smaller screens */
+    gap: 5px; /* Adds space between page numbers */
+}
+
+/* Common styles for buttons */
+.pagination-button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 5px;
+    background-color: #32373d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    border: 1px solid  #32373d;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
+    background-color: #32373d32;
+    color:  #32373d;
+}
+
+/* Styles for page numbers */
+.pagination-number {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 5px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-number:hover {
+    background-color: #32373d32;
+    color:  #32373d;
+}
+
+/* Highlight active/current page */
+.pagination-number.active {
+    background-color:  #32373d;
+    color: #fff;
+    border: 1px solid  #32373d;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 600px) {
+    .pagination-buttons, .pagination-numbers {
+        flex-wrap: nowrap; /* Prevents wrapping into columns */
+        overflow-x: auto;  /* Allows horizontal scrolling if content overflows */
+    }
+
+    /* Make sure the buttons remain aligned in one line on small screens */
+    .pagination-button, .pagination-number {
+        flex-shrink: 0; /* Prevent shrinking of buttons */
+        padding: 6px 12px; /* Adjust padding for smaller screens */
+        margin: 3px;
+        font-size: 14px;
+    }
+}
+
+
+
+</style>
+
+    </head>
+    
+    <body>
+
+        
+        <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img src="{% static 'images/logo.png'  %}"  class="logo img-fluid" alt="Kind Heart Charity">
+                    <span>
+                        Pragati Foundation
+                        <small>Non-profit Organization</small>
+                    </span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %} click-scroll" style="color: gray;" href="{% url 'index' %}">Home</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %} click-scroll" href="{% url 'gallery' %}">Beneficiary</a>
+                        </li>
+                
+                        
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'donates' %}active{% endif %} click-scroll" href="{% url 'donates' %}">Donate</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'history' %}active{% endif %} click-scroll" href="{% url 'history' %}">History</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'contactus' %}active{% endif %} click-scroll" href="{% url 'contactus' %}">Contact</a>
+                        </li>
+                
+                        <li class="nav-item ms-1">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'contactus' %}">Volunteer</a>
+                        </li>
+
+                        <li class="nav-item ms-1 d-none d-lg-block">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item ms-1">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'add_person' %}">Register</a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </nav>
+
+        <main>
+            <!-- Display hero section only on the first page -->
+            {% if page_obj.number == 1 %}
+            <section class="hero-section hero-section-full-height">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 p-0">
+                            <div id="hero-slide" class="carousel carousel-fade slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="{% static 'images/slide/disable-hero.png'%}" class="carousel-image img-fluid" alt="...">
+                                        
+                                        <div class="carousel-caption d-flex flex-column justify-content-end">
+                                            <h1>Serving</h1>
+                                            <p>For the Humanity</p>
+                                        </div>
+                                    </div>
+        
+                                    <!-- <div class="carousel-item">
+                                        <img src="{% static 'images/slide/head2.png '%}" class="carousel-image img-fluid" alt="...">
+                                        
+                                        <div class="carousel-caption d-flex flex-column justify-content-end">
+                                            <h1>Non-profit</h1>
+                                            <p>You can support us to grow more</p>
+                                        </div>
+                                    </div> -->
+                                </div>
+        
+                                <!-- <button class="carousel-control-prev" type="button" data-bs-target="#hero-slide" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+        
+                                <button class="carousel-control-next" type="button" data-bs-target="#hero-slide" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% endif %}
+            <br><br>
+            <!-- Event history section -->
+            {% block content %}
+            <div class="container" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">
+
+                <center>
+                <h1>Event History</h1>
+            </center>
+                <div class="events">
+                    {% for event in page_obj %}
+                        <div class="event-card">
+                            <div class="event-images">
+                                <div class="image-grid">
+                                    {% for image in event.images.all %}
+                                        <div class="image-item">
+                                            <img src="{{ image.image.url }}" alt="Event image" draggable="false" oncontextmenu="return false;">
+                                        </div>
+                                    {% empty %}
+                                        <p>No images available.</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+        
+                            <div class="event-description">
+                                <h2>{{ event.name }}</h2>
+                                <p><strong>Date:</strong> {{ event.date }}</p>
+                                <p>{{ event.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+        
+                <!-- Pagination controls -->
+                <div class="pagination">
+                    <div class="pagination-buttons">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1" class="pagination-button">&laquo; First</a>
+                            <a href="?page={{ page_obj.previous_page_number }}" class="pagination-button">Previous</a>
+                        {% endif %}
+        
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}" class="pagination-button">Next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-button">Last &raquo;</a>
+                        {% endif %}
+                    </div>
+        
+                    <div class="pagination-numbers">
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                                <span class="pagination-number active">{{ num }}</span>
+                            {% else %}
+                                <a href="?page={{ num }}" class="pagination-number">{{ num }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <br>
+                </div>
+            </div>
+            {% endblock %}
+            
+            <br><br><br>
+        </main>
+        
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-12 mb-4" style="width: 100px;">
+                        <img src="{% static 'images/logo.png' %}" class="logo img-fluid" alt="">
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mb-4">
+                        <h5 class="site-footer-title mb-3">Quick Links</h5>
+
+                        <ul class="footer-menu">
+                            <li class="footer-menu-item"><a href="{% url 'index' %}" class="footer-menu-link">Home</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'gallery' %}" class="footer-menu-link">Beneficiary</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'about' %}" class="footer-menu-link">About</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'contactus' %}" class="footer-menu-link">Become a volunteer</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'donates' %}" class="footer-menu-link">Partner with us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mx-auto">
+                        <h5 class="site-footer-title mb-3">Contact Infomation</h5>
+
+                        <p class="text-white d-flex mb-2">
+                            <i class="bi-telephone me-2"></i>
+
+                            <a href="tel: 9167910915" class="site-footer-link">
+                                9167910915
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <i class="bi-envelope me-2"></i>
+
+                            <a href="mailto:info@yourgmail.com" class="site-footer-link">
+                                enquiry@pragati-foundation.com
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex mt-3">
+                            <i class="bi-geo-alt me-2"></i>
+                            BJP Karyalay, Vasant Vihar Mhada Office Thane West 400610
+                        </p>
+
+                        <!-- <a href="#" class="custom-btn btn mt-3">Get Direction</a> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-7 col-12">
+                            <p class="copyright-text mb-0">Copyright © 2024 Pragati Foundation.
+                        	</a></p>
+                        </div>
+                        
+                        <div class="col-lg-2 col-md-5 col-12 d-flex justify-content-end mx-auto">
+                            <ul class="social-icon">
+                                <!-- <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li> -->
+
+                                <li class="social-icon-item">
+                                    <a href="https://www.facebook.com/foundation.pragati" target="_blank" class="social-icon-link bi-facebook"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="https://www.instagram.com/pra.gatifoundation?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-icon-link bi-instagram"></a>
+                                </li>
+
+                                <!-- <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-linkedin"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-youtube"></a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="{% static 'js/jquery.min.js'%}"></script>
+        <script src="{% static 'js/bootstrap.min.js'%}"></script>
+        <script src="{% static 'js/jquery.sticky.js'%}"></script>
+        <script src="{% static 'js/click-scroll.js'%}"></script>
+        <script src="{% static 'js/counter.js'%}"></script>
+        <script src="{% static 'js/custom.js'%}"></script>
+        <script>
+            document.addEventListener("contextmenu", function(e) {
+                if (e.target.tagName === "IMG") {
+                    e.preventDefault();
+                }
+            });
+        </script>
+
+    </body>
+</html>

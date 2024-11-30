@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Cause</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .alert-success {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard</h1>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_event' %}">Add Event</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'add_cause' %}">Add Cause</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_person' %}">Add Person</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_work' %}">Add Work</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">logout</a>
+            </li>
+        </ul>
+    </div>
+
+<div class="container">
+    <h1>Add Cause</h1>
+    {% if success_message %}
+        <div class="alert alert-success">{{ success_message }}</div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ cause_form.as_p }}
+        <button type="submit" name="cause_form_submit" class="btn btn-primary">Submit Cause</button>
+    </form>
+
+    <a href="{% url 'donates' %}" class="btn btn-secondary mt-3">Back to Donate</a>
+
+    
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

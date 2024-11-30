@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Person</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            display: block;
+            width: 20%;
+            margin-top: 20px;
+        }
+        .alert-success {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Register as Beneficiary  </h1>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'add_person' %}">Register </a>
+            </li>
+        </ul>
+    </div>
+
+<div class="container">
+    <h1>Add Details</h1>
+    {% if success_message %}
+        <div class="alert alert-success">{{ success_message }}</div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    
+        <!-- Name Field -->
+        <div class="form-group">
+            <label for="id_name">Name <sup style="color: red; ">*</sup> (As per UDID)</label>
+            {{ person_form.name }}
+            {% if person_form.name.errors %}
+                <div class="text-danger">{{ person_form.name.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Photo Field -->
+        <div class="form-group">
+            <label for="id_photo">Photo (JPG, JPEG, PNG - Max 2MB)</label>
+            {{ person_form.photo }}
+            {% if person_form.photo.errors %}
+                <div class="text-danger">{{ person_form.photo.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Phone Field -->
+        <div class="form-group">
+            <label for="id_phone">Phone (10 digits)</label>
+            {{ person_form.phone }}
+            {% if person_form.phone.errors %}
+                <div class="text-danger">{{ person_form.phone.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Email Field -->
+        <div class="form-group">
+            <label for="id_email">Email</label>
+            {{ person_form.email }}
+            {% if person_form.email.errors %}
+                <div class="text-danger">{{ person_form.email.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Address Field -->
+        <div class="form-group">
+            <label for="id_address">Address</label>
+            {{ person_form.address }}
+            {% if person_form.address.errors %}
+                <div class="text-danger">{{ person_form.address.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Disability Type Field -->
+        <div class="form-group">
+            <label for="id_disability_type">Disability Type</label>
+            {{ person_form.disability_type }}
+            {% if person_form.disability_type.errors %}
+                <div class="text-danger">{{ person_form.disability_type.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Disability Percentage Field -->
+        <div class="form-group">
+            <label for="id_dis_percentage">Disability Percentage</label>
+            {{ person_form.dis_percentage }}
+            {% if person_form.dis_percentage.errors %}
+                <div class="text-danger">{{ person_form.dis_percentage.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- UDID Number Field -->
+        <div class="form-group">
+            <label for="id_udid_no">UDID Number (16 Character)</label>
+            {{ person_form.udid_no }}
+            {% if person_form.udid_no.errors %}
+                <div class="text-danger">{{ person_form.udid_no.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Aadhaar Number Field -->
+        <div class="form-group">
+            <label for="id_aadhaar_no">Aadhaar Number (12 digits) </label>
+            {{ person_form.aadhaar_no }}
+            {% if person_form.aadhaar_no.errors %}
+                <div class="text-danger">{{ person_form.aadhaar_no.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Age Field -->
+        <div class="form-group">
+            <label for="id_age">Age</label>
+            {{ person_form.age }}
+            {% if person_form.age.errors %}
+                <div class="text-danger">{{ person_form.age.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Gender Field -->
+        <div class="form-group">
+            <label for="id_gender">Gender</label>
+            {{ person_form.gender }}
+            {% if person_form.gender.errors %}
+                <div class="text-danger">{{ person_form.gender.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Dependent Field -->
+        <div class="form-group">
+            <label for="id_dependent">Dependent</label>
+            {{ person_form.dependent }}
+            {% if person_form.dependent.errors %}
+                <div class="text-danger">{{ person_form.dependent.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Occupation Field -->
+        <div class="form-group">
+            <label for="id_occupation">Occupation</label>
+            {{ person_form.occupation }}
+            {% if person_form.occupation.errors %}
+                <div class="text-danger">{{ person_form.occupation.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Salary Field -->
+        <div class="form-group">
+            <label for="id_salary">Salary</label>
+            {{ person_form.salary }}
+            {% if person_form.salary.errors %}
+                <div class="text-danger">{{ person_form.salary.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- IT Return Field -->
+        <div class="form-group">
+            <label for="id_it_return">IT Return</label>
+            {{ person_form.it_return }}
+            {% if person_form.it_return.errors %}
+                <div class="text-danger">{{ person_form.it_return.errors }}</div>
+            {% endif %}
+        </div>
+    
+        <!-- Submit Button -->
+        <center>
+            <button type="submit" name="person_form_submit" class="btn btn-primary">Submit</button>
+        </center>
+    </form>
+    
+
+    <a href="{% url 'gallery' %}" class="btn btn-secondary mt-3">Back to Beneficiary</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,453 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Pragati Foundation</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/icons/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/icons/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/icons/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'images/icons/site.webmanifest ' %}">
+
+        <!-- CSS FILES -->        
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-mQ93J8/AlzC6HkI6zBl7cxmn+mfnEi91Me7RmZH81/tbxJK0DgLkMDaPB5D4uVB0" crossorigin="anonymous">
+        <!-- Add these in the <head> or just before the closing </body> tag -->
+        
+            <style>
+                /* Fixed height and width for the image */
+            .fixed-image {
+                height: 250px;  /* Set a fixed height for the image */
+                width: 100%;    /* Ensures it fills the card width */
+                object-fit: contain; /* Ensures the image maintains aspect ratio without distortion */
+            }
+            
+            /* Fixed size for the card */
+            .fixed-card {
+                height: 300px;  /* Fixed card height */
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            
+            /* Only the cause detail is scrollable */
+            .scrollable {
+                max-height: 100px;  /* Set a max-height for the scrollable content */
+                overflow-y: auto;  /* Enable scrolling if content exceeds */
+                padding-right: 10px;
+            }
+            
+            /* Optional: Customize scroll bar for a cleaner look */
+            .scrollable::-webkit-scrollbar {
+                width: 6px;
+            }
+            
+            .scrollable::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+            
+            .scrollable::-webkit-scrollbar-thumb {
+                background: #888;
+            }
+            
+            .scrollable::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+            
+            </style>
+
+        
+
+    </head>
+    
+    <body>
+
+        
+        <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img src="{% static 'images/logo.png'  %}" class="logo img-fluid" alt="Kind Heart Charity">
+                    <span>
+                        Pragati Foundation
+                        <small>Non-profit Organization</small>
+                    </span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %} click-scroll" href="{% url 'index' %}">Home</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %} click-scroll" href="{% url 'gallery' %}">Beneficiary</a>
+                        </li>
+                
+                        
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'donates' %}active{% endif %} click-scroll" href="{% url 'donates' %}">Donate</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'history' %}active{% endif %} click-scroll" href="{% url 'history' %}">History</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'contactus' %}active{% endif %} click-scroll" href="{% url 'contactus' %}">Contact</a>
+                        </li>
+                
+                        <li class="nav-item ms-1">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'contactus' %}">Volunteer</a>
+                        </li>
+
+                        <li class="nav-item ms-1 d-none d-lg-block">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'login' %}">Login</a>
+                        </li>
+
+                        <li class="nav-item ms-1">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'add_person' %}">Register</a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </nav>
+
+        <main>
+
+            
+            <section class="cta-section section-padding section-bg">
+                <div class="container">
+                    <div class="row">
+            
+                        <div class="col-lg-12 col-12 text-center mb-4">
+                            <h2>Be a Part of Someone's live</h2>
+                        <h4>
+                           Helping others 
+                        </h4>
+                        </div>
+                        <div class="row g-4">
+                        {% for cause in causes %}
+                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                            <div class="custom-block-wrap">
+                                <img src="{{cause.img.url}}" class="custom-block-image img-fluid fixed-image" alt="">
+            
+                                <div class="custom-block fixed-card">
+                                    <div class="custom-block-body">
+                                        <h5 class="mb-3">{{cause.name}}</h5>
+            
+                                        <!-- Scrollable content only for the detail -->
+                                        <div class="scrollable">
+                                            <p>{{cause.detail}}</p>
+                                        </div>
+                                        <div class="d-flex custom-block my-2">
+                                            <p class="mb-0">
+                                                <strong>Raised:</strong>
+                                                ₹ {{cause.raised}}
+                                            </p>
+            
+                                            <p class="ms-auto mb-0">
+                                                <strong>Goal:</strong>
+                                                ₹ {{cause.goal}}
+                                            </p>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <a href="{% url 'donates' %}?cause={{ cause.id }}#donate-form" class="custom-btn btn">Donate now</a>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- <section class="section-padding" id="">
+                <div class="container">
+                    
+                </div>
+            </section> -->
+
+            <section class="donate-section" id="donate-form">
+                
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 mx-auto">
+                            <form class="custom-form donate-form" action="donates" method="post" role="form" enctype="multipart/form-data">
+
+                                {% csrf_token %}
+                                <h3 class="mb-4">Make a donation</h3>
+
+                                <div class="col-lg-12 col-12">
+                                    <h5 class="mt-2 mb-3"> <label for="cause-select">Select a Cause to Donate for</label> </h5>
+                                    <select name="cause" id="cause-select" class="form-control" required>
+                                        <option value="select">Select a Cause</option> 
+                                        {% for cause in causes %}
+                                        <!-- Preselect the cause if it matches the one in the query params, but allow manual selection -->
+                                        <option value="{{ cause.id }}" {% if request.GET.cause == cause.id|stringformat:"s" %}selected{% endif %}>{{ cause.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    
+
+                                </div>
+                                
+                                
+
+                                <div class="row">
+                                    
+
+                                    <div class="col-lg-12 col-12">
+                                        <h5 class="mt-2 mb-3">Enter the donation amount</h5>
+                                    </div>
+
+                                    <div class="col-lg-6 col-12 form-check-group">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1">₹</span>
+                                            <input type="number" 
+                                            name="amount" 
+                                            class="form-control" placeholder="Enter amount">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-12">
+                                        <h5 class="mt-1">Personal Info</h5>
+                                    </div>
+
+                                    <div class="col-lg-6 col-12 mt-2">
+                                        <input type="text" name="name" id="donation-name" class="form-control" placeholder="Your Name" required>
+                                    </div>
+
+                                    <div class="col-lg-6 col-12 mt-2">
+                                        <input type="text" name="email" id="donation-email" class="form-control" placeholder="Your Email" required>
+                                    </div>
+
+                                    <div class="col-lg-12 col-12 mt-2">
+                                        <label for="donation-photo">Upload Your Photo</label>
+                                        <input type="file" name="photo" id="donation-photo" class="form-control" accept="image/*">
+                                    </div>
+
+                                    
+                                    <div class="col-lg-12 col-12 mt-2">                                      
+                                        <input type="submit" class="form-control mt-4" value="Submit Donation" style="background: #5a6f80;color: white;">
+                                    </div>
+
+                                    
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    // Check if the URL contains the cause parameter
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const cause = urlParams.get('cause');
+            
+                    // If cause exists, scroll to the donate form
+                    if (cause) {
+                        const formSection = document.getElementById('donate-form');
+                        if (formSection) {
+                            formSection.scrollIntoView({ behavior: "smooth" });
+                        }
+                    }
+                });
+            </script>
+            
+                
+            <section class="section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center mb-4">
+                            <h2>Latest Donations</h2>
+                        </div>
+            
+                        <!-- Carousel Wrapper -->
+                        <div id="donationCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <!-- Carousel Inner -->
+                            <div class="carousel-inner">
+                                {% for donation in donations %}
+                                    {% if forloop.counter0|divisibleby:3 %}
+                                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                            <div class="row">
+                                    {% endif %}
+                                                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                                                    <div class="custom-block">
+                                                        <div class="custom-block-body">
+                                                            <div class="donor-info d-flex align-items-center mb-3">
+                                                                {% if donation.photo %}
+                                                                <img src="{{ donation.photo.url }}" alt="Donor photo" class="donor-photo rounded-circle" style="width: 50px; height: 50px;">
+                                                                {% else %}
+                                                                <img src="{% static 'images/default.png' %}" alt="Default photo" class="donor-photo rounded-circle" style="width: 50px; height: 50px;">
+                                                                {% endif %}
+                                                                <h5 class="mb-0 ms-2">{{ donation.name }}</h5>
+                                                            </div>
+                                                            <div class="donation-info">
+                                                                <p>Email: {{ donation.email }}</p>
+                                                                <p><strong>Donation Given:</strong> ₹ {{ donation.amount }}</p>
+                                                                <p><strong>Donated for:</strong> {{ donation.cause.name }}</p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% empty %}
+                                    <div class="carousel-item active">
+                                        <p>No donations yet.</p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+            
+                            <!-- Next and Previous Buttons -->
+                            <div class="text-center mt-3">
+                                <button class="btn btn-secondary" type="button" data-bs-target="#donationCarousel" data-bs-slide="prev">Previous</button>
+                                <button class="btn btn-secondary" type="button" data-bs-target="#donationCarousel" data-bs-slide="next">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            
+            
+            
+            
+            
+
+            
+            
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-12 mb-4" style="width: 100px;">
+                        <img src="{% static 'images/logo.png' %}" class="logo img-fluid" alt="">
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mb-4">
+                        <h5 class="site-footer-title mb-3">Quick Links</h5>
+
+                        <ul class="footer-menu">
+                            <li class="footer-menu-item"><a href="{% url 'index' %}" class="footer-menu-link">Home</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'gallery' %}" class="footer-menu-link">Beneficiary</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'about' %}" class="footer-menu-link">About</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'contactus' %}" class="footer-menu-link">Become a volunteer</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'donates' %}" class="footer-menu-link">Partner with us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mx-auto">
+                        <h5 class="site-footer-title mb-3">Contact Infomation</h5>
+
+                        <p class="text-white d-flex mb-2">
+                            <i class="bi-telephone me-2"></i>
+
+                            <a href="tel: 9167910915" class="site-footer-link">
+                                9167910915
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <i class="bi-envelope me-2"></i>
+
+                            <a href="mailto:info@yourgmail.com" class="site-footer-link">
+                                enquiry@pragati-foundation.com
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex mt-3">
+                            <i class="bi-geo-alt me-2"></i>
+                            BJP Karyalay, Vasant Vihar Mhada Office Thane West 400610
+                        </p>
+
+                        <!-- <a href="#" class="custom-btn btn mt-3">Get Direction</a> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-7 col-12">
+                            <p class="copyright-text mb-0">Copyright © 2024 Pragati Foundation.
+                        	</a></p>
+                        </div>
+                        
+                        <div class="col-lg-2 col-md-5 col-12 d-flex justify-content-end mx-auto">
+                            <ul class="social-icon">
+                                <!-- <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li> -->
+
+                                <li class="social-icon-item">
+                                    <a href="https://www.facebook.com/foundation.pragati" target="_blank" class="social-icon-link bi-facebook"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="https://www.instagram.com/pra.gatifoundation?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-icon-link bi-instagram"></a>
+                                </li>
+
+                                <!-- <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-linkedin"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-youtube"></a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/jquery.sticky.js' %}"></script>
+        <script src="{% static 'js/counter.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoWQsmkJpO1iZbI5M1d3uxX2VpStJNztbKPEzlgde6EdW6r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+        
+    </body>
+</html>

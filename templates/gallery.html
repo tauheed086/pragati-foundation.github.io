@@ -1,0 +1,518 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Pragati Foundation</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/icons/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/icons/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/icons/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'images/icons/site.webmanifest ' %}">
+
+        <!-- CSS FILES -->        
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
+<!--
+
+TemplateMo 581 Kind Heart Charity
+
+https://templatemo.com/tm-581-kind-heart-charity
+
+-->
+<style>
+    .navigation {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .navigation button {
+        padding: 10px 20px;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+
+    table {
+            width: 100%; /* Make the table take up the full width */
+            border-collapse: collapse; /* Merge borders */
+        }
+        th, td {
+           
+            padding: 12px; /* Padding inside cells */
+            text-align: left; /* Align text to the left */
+        }
+        th {
+            background-color: #f2f2f2; /* Light gray background for headers */
+        }
+        td {
+            background-color: #f9f9f9; /* Slightly lighter gray for table data */
+        }
+
+        .total-count {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px 0; /* Adjust margin if needed */
+}
+
+</style>
+
+    </head>
+    
+    <body>
+
+        
+        <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img src="{% static 'images/logo.png'  %}"  class="logo img-fluid" alt="Kind Heart Charity">
+                    <span>
+                        Pragati Foundation
+                        <small>Non-profit Organization</small>
+                    </span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %} click-scroll" style="color: gray;" href="{% url 'index' %}">Home</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %} click-scroll" href="{% url 'gallery' %}">Beneficiary</a>
+                        </li>
+                
+                        
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'donates' %}active{% endif %} click-scroll" href="{% url 'donates' %}">Donate</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'history' %}active{% endif %} click-scroll" href="{% url 'history' %}">History</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'contactus' %}active{% endif %} click-scroll" href="{% url 'contactus' %}">Contact</a>
+                        </li>
+                
+                        <li class="nav-item ms-1">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'contactus' %}">Volunteer</a>
+                        </li>
+
+                        <li class="nav-item ms-1 d-none d-lg-block">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item ms-1">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'add_person' %}">Register</a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </nav>
+
+        <main>
+
+            
+            <section class="hero-section hero-section-full-height">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-lg-12 col-12 p-0">
+                            <div id="hero-slide" class="carousel carousel-fade slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="{% static 'images/slide/gallery.png'%} " class="carousel-image img-fluid" alt="...">
+                                        
+                                        <div class="carousel-caption d-flex flex-column justify-content-end">
+                                            <h1>Be a Kind Heart</h1>
+                                            
+                                            <!-- <p>Professional charity theme based on Bootstrap 5.2.2</p> -->
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+                       {% block content %}
+            <section class="section-padding">
+                <div class="col-lg-10 col-12 text-center mx-auto">
+                    <h2 class="mb-5">Beneficiaries</h2>
+                </div>
+                <div class="container d-flex justify-content-center">
+                    <div class="row" style="width: 100%;">
+                        {% for person in persons %}
+                        <div class="col-12">
+                            <div class="card h-100 shadow-sm">
+                                <div class="row g-0">
+                                    <div class="col-md-3">
+                                        {% if person.photo %}
+                                            <img src="{{ person.photo.url }}" class="img-fluid rounded-start" alt="{{ person.name }}" style="height: 100%; object-fit: cover;">
+                                        {% else %}
+                                            <img src="{% static 'images/default.png' %}" class="img-fluid rounded-start" alt="{{ person.name }}" style="height: 100%; object-fit: cover;">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ person.name }}</h5>
+                                            <table class="table">
+                                                <tr>
+                                                    <td><strong>E-mail:</strong> {{ person.email }}</td>
+                                                    <td><strong>Phone No.: </strong> {{ person.mask_phone }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Gender:</strong> {{ person.gender }}</td>
+                                                    <td><strong>Age:</strong> {{ person.age }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><strong>Address: </strong>{{ person.address }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Disability Type: </strong>{{ person.disability_type }}</td>
+                                                    <td><strong>Disability Percentage: </strong>{{ person.dis_percentage }}%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>UDID No.: </strong>{{ person.mask_udid }}</td>
+                                                    <td><strong>Aadhaar No.: </strong>{{ person.mask_aadhaar }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Dependent: </strong>{{ person.dependent }}</td>
+                                                    <td><strong>Occupation: </strong>{{ person.occupation }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Salary: </strong>{{ person.salary }}</td>
+                                                    <td></td>
+                                                </tr>
+                                            </table>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <small class="text-muted">Registered on {{ person.date_registered|date:"F j, Y" }}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                        {% endfor %}
+                        
+                        
+
+                        <div class="navigation">
+                            <button id="prev" onclick="showPrev()">Previous</button>
+                            <button id="next" onclick="showNext()">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% endblock %}
+
+
+
+
+     
+            <br><br>
+
+
+            <section class="testimonial-section section-padding section-bg">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+                            <h2 class="mb-lg-3">We love Serving to Humanity</h2>
+
+                            <h3 class="mb-lg-3">Remark by our Benefeciaries</h3>
+                            
+                                <div id="testimonial-carousel" class="carousel carousel-fade slide" data-bs-ride="carousel">
+
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                           <div class="carousel-caption">
+                                                <h4 class="carousel-title">Pragati Foundation gave me a prosthetic leg after my accident, allowing me to walk again. Their support restored my independence and dignity. I’m forever grateful!</h4>
+
+                                                <small class="carousel-name"><span class="carousel-name-title">Chaitali Tandel</small>
+                                           </div>
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <div class="carousel-caption">
+                                                <h4 class="carousel-title">Thanks to Pragati Foundation, I received a wheelchair and started my own small business. They helped me become financially independent, and I now have a steady income!</h4>
+
+                                                <small class="carousel-name"><span class="carousel-name-title">
+                                                    Kedar Suryakant Kasbe</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <div class="carousel-caption">
+                                                <h4 class="carousel-title">Pragati Foundation provided my child with a walking stick and treated us with great care. Their help has made a huge difference in my daughter’s life. We’re so thankful!</h4>
+
+                                                <small class="carousel-name"><span class="carousel-name-title">Danesh Kishor Koli</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <div class="carousel-caption">
+                                                <h4 class="carousel-title">With a prosthetic arm from Pragati Foundation, I now have the confidence to work and support my family. They’ve empowered me to live a better life!</h4>
+
+                                                <small class="carousel-name"><span class="carousel-name-title">Purviraj Chauhan</small>
+                                           </div>
+                                        </div>
+
+                                        <br>
+                                          <ol class="carousel-indicators">
+                                               <li data-bs-target="#testimonial-carousel" data-bs-slide-to="0" class="active">
+                                                    <img src="{% static 'images/default.png'%}" class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                               </li>
+
+                                               <li data-bs-target="#testimonial-carousel" data-bs-slide-to="1" class="">
+                                                    <img src="{% static 'images/default.png'%}" class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                               </li>
+
+                                               <li data-bs-target="#testimonial-carousel" data-bs-slide-to="2" class="">
+                                                    <img src="{% static 'images/default.png'%}" class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                               </li>
+
+                                               <li data-bs-target="#testimonial-carousel" data-bs-slide-to="3" class="">
+                                                    <img src="{% static 'images/default.png'%}" class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                               </li>
+
+                                               
+                                          </ol>
+
+                                 </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- <section class="contact-section section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-4 col-12 ms-auto mb-5 mb-lg-0">
+                            <div class="contact-info-wrap">
+                                <h2>Get in touch</h2>
+
+                                <div class="contact-image-wrap d-flex flex-wrap">
+                                    <img src="{% static 'images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg'%}" class="img-fluid avatar-image" alt="">
+
+                                    <div class="d-flex flex-column justify-content-center ms-3">
+                                        <p class="mb-0">Clara Barton</p>
+                                        <p class="mb-0"><strong>HR & Office Manager</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info">
+                                    <h5 class="mb-3">Contact Infomation</h5>
+
+                                    <p class="d-flex mb-2">
+                                        <i class="bi-geo-alt me-2"></i>
+                                        Akershusstranda 20, 0150 Oslo, Norway
+                                    </p>
+
+                                    <p class="d-flex mb-2">
+                                        <i class="bi-telephone me-2"></i>
+
+                                        <a href="tel: 120-240-9600">
+                                            120-240-9600
+                                        </a>
+                                    </p>
+
+                                    <p class="d-flex">
+                                        <i class="bi-envelope me-2"></i>
+
+                                        <a href="mailto:info@yourgmail.com">
+                                            enquiry@pragati-foundation.com
+                                        </a>
+                                    </p>
+
+                                    <a href="#" class="custom-btn btn mt-3">Get Direction</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5 col-12 mx-auto">
+                            <form class="custom-form contact-form" action="/contact" method="post" role="form">
+                                {% csrf_token %}
+                                <h2>Contact form</h2>
+
+                                <p class="mb-4">Or, you can just send an email:
+                                    <a href="#">info@charity.org</a>
+                                </p>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <input type="text" name="f_name" id="first-name" class="form-control" placeholder="Your Name" required>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <input type="text" name="l_name" id="last-name" class="form-control" placeholder="Last Name" required>
+                                    </div>
+                                </div>
+
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Enter Your Email" required>
+
+                                <textarea name="message" rows="5" class="form-control" id="message" placeholder="What can we help you?"></textarea>
+
+                                <input type="submit" class="form-control" value="Send Message" style="background: #5a6f80;color: white;">
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section> -->
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-12 mb-4" style="width: 100px;">
+                        <img src="{% static 'images/logo.png' %}" class="logo img-fluid" alt="">
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mb-4">
+                        <h5 class="site-footer-title mb-3">Quick Links</h5>
+
+                        <ul class="footer-menu">
+                            <li class="footer-menu-item"><a href="{% url 'index' %}" class="footer-menu-link">Home</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'gallery' %}" class="footer-menu-link">Beneficiary</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'about' %}" class="footer-menu-link">About</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'contactus' %}" class="footer-menu-link">Become a volunteer</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'donates' %}" class="footer-menu-link">Partner with us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mx-auto">
+                        <h5 class="site-footer-title mb-3">Contact Infomation</h5>
+
+                        <p class="text-white d-flex mb-2">
+                            <i class="bi-telephone me-2"></i>
+
+                            <a href="tel: 8433616461" class="site-footer-link">
+                                8433616461
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <i class="bi-envelope me-2"></i>
+
+                            <a href="mailto:info@yourgmail.com" class="site-footer-link">
+                                enquiry@pragati-foundation.com
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex mt-3">
+                            <i class="bi-geo-alt me-2"></i>
+                            BJP Karyalay, Vasant Vihar Mhada Office Thane West 400610
+                        </p>
+
+                        <!-- <a href="#" class="custom-btn btn mt-3">Get Direction</a> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-7 col-12">
+                            <p class="copyright-text mb-0">Copyright © 2024 Pragati Foundation.
+                        	</a></p>
+                        </div>
+                        
+                        <div class="col-lg-2 col-md-5 col-12 d-flex justify-content-end mx-auto">
+                            <ul class="social-icon">
+                                <!-- <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li> -->
+
+                                <li class="social-icon-item">
+                                    <a href="https://www.facebook.com/foundation.pragati" target="_blank" class="social-icon-link bi-facebook"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="https://www.instagram.com/pra.gatifoundation?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-icon-link bi-instagram"></a>
+                                </li>
+
+                                <!-- <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-linkedin"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-youtube"></a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JAVASCRIPT FILES -->
+        <script>
+            let currentIndex = 0;
+            const cards = document.querySelectorAll('.card');
+            
+            function showCard(index) {
+                cards.forEach((card, i) => {
+                    card.style.display = (i === index) ? 'block' : 'none';
+                });
+            }
+    
+            function showNext() {
+                if (currentIndex < cards.length - 1) {
+                    currentIndex++;
+                    showCard(currentIndex);
+                }
+            }
+    
+            function showPrev() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    showCard(currentIndex);
+                }
+            }
+    
+            // Show the first card by default
+            showCard(currentIndex);
+        </script>
+        <script src="{% static 'js/jquery.min.js'%}"></script>
+        <script src="{% static 'js/bootstrap.min.js'%}"></script>
+        <script src="{% static 'js/jquery.sticky.js'%}"></script>
+        <script src="{% static 'js/click-scroll.js'%}"></script>
+        <script src="{% static 'js/counter.js'%}"></script>
+        <script src="{% static 'js/custom.js'%}"></script>
+
+    </body>
+</html>

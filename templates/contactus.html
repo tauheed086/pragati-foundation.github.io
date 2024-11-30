@@ -1,0 +1,572 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Pragati Foundation</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/icons/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/icons/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/icons/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'images/icons/site.webmanifest ' %}">
+
+        <!-- CSS FILES -->        
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
+<!--
+
+TemplateMo 581 Kind Heart Charity
+
+https://templatemo.com/tm-581-kind-heart-charity
+
+-->
+
+    </head>
+    
+    <body>
+
+      
+        <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img src="{% static 'images/logo.png'  %}" class="logo img-fluid" alt="Kind Heart Charity">
+                    <span>
+                        Pragati Foundation
+                        <small>Non-profit Organization</small>
+                    </span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %} click-scroll" style="color: gray;" href="{% url 'index' %}">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %} click-scroll" href="{% url 'gallery' %}">Beneficiary</a>
+                        </li>
+                
+                        
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'donates' %}active{% endif %} click-scroll" href="{% url 'donates' %}">Donate</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'history' %}active{% endif %} click-scroll" href="{% url 'history' %}">History</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'contactus' %}active{% endif %} click-scroll" href="{% url 'contactus' %}">Contact</a>
+                        </li>
+                
+                        <li class="nav-item ms-1">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'contactus' %}">Volunteer</a>
+                        </li>
+
+                        <li class="nav-item ms-1 d-none d-lg-block">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item ms-1">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="{% url 'add_person' %}">Register</a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </nav>
+
+        <main>
+
+            <section class="hero-section hero-section-full-height">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-lg-12 col-12 p-0">
+                            <div id="hero-slide" class="carousel carousel-fade slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="{% static 'images/slide/bg_2.jpg'%} " class="carousel-image img-fluid" alt="...">
+                                        
+                                        <div class="carousel-caption d-flex flex-column justify-content-end">
+                                            <h1>Serving</h1>
+                                            
+                                            <p>For the Humanity</p>
+                                        </div>
+                                    </div>
+
+                                    
+
+                                     
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- <section class="section-padding section-bg">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-10 col-12 text-center mx-auto">
+                            <h2 class="mb-5">Welcome to Pragati Foundation</h2>
+                        </div>
+
+                        <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                            <img src="{% static 'images/who.png'%}" class="custom-text-box-image img-fluid" alt="">
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="custom-text-box">
+                                <h2 class="mb-2">Who we are</h2>
+
+                                
+
+                                <p class="mb-0">The Pragati Foundation is committed to transforming the lives of children and individuals with disabilities through dedicated and innovative programs.</p>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="custom-text-box mb-lg-0">
+                                        <h5 class="mb-3">Our Mission</h5>
+
+                                        <p>The Pragati Foundation is dedicated to enhancing the lives of children and individuals with disabilities through .</p>
+
+                                        <ul class="custom-list mt-2">
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                Comprehensive Support 
+                                            </li>
+
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                 Innovative Programs
+                                            </li>
+
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                Community Engagement
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="custom-text-box d-flex flex-wrap d-lg-block mb-lg-0">
+                                        <div class="counter-thumb"> 
+                                            <span class="counter-text">Served Over</span>
+                                            <div class="d-flex">
+                                                <span class="counter-number" data-from="1" data-to="50" data-speed="1000"></span>
+                                                <span class="counter-number-text">k</span>
+                                                <span class="counter-number-text">+</span>
+                                            </div>
+
+                                            <span class="counter-text">Disableds and Children</span>
+                                        </div> 
+
+                                        <div class="counter-thumb mt-4"> 
+                                            <div class="d-flex">
+                                                <span class="counter-number" data-from="1" data-to="50" data-speed="1000"></span>
+                                                <span class="counter-number-text">+</span>
+                                            </div>
+
+                                            <span class="counter-text">Volunteers</span>
+                                        </div> 
+
+                                        <div class="counter-thumb mt-4"> 
+                                            <div class="d-flex">
+                                                <span class="counter-number" data-from="1" data-to="5" data-speed="1000"></span>
+                                                <span class="counter-number-text">L</span>
+                                                <span class="counter-number-text">+</span>
+                                            </div>
+
+                                            <span class="counter-text">Donations Received</span>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section> -->
+
+
+            <!-- <section class="section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-10 col-12 text-center mx-auto">
+                            <h2 class="mb-5">Help Individuals to Grow</h2>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                            <div class="featured-block d-flex justify-content-center align-items-center">
+                                <a href="donate.html" class="d-block">
+                                    <img src="{% static 'images/icons/hands.png' %}" class="featured-block-image img-fluid" alt="">
+
+                                    <p class="featured-block-text">Become a <strong>volunteer</strong></p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-4">
+                            <div class="featured-block d-flex justify-content-center align-items-center">
+                                <a href="donate.html" class="d-block">
+                                    <img src="{% static 'images/icons/heart.png' %}" class="featured-block-image img-fluid" alt="">
+
+                                    <p class="featured-block-text"><strong>Caring</strong> Earth</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-4">
+                            <div class="featured-block d-flex justify-content-center align-items-center">
+                                <a href="donate.html" class="d-block">
+                                    <img src="{% static 'images/icons/receive.png'%}" class="featured-block-image img-fluid" alt="">
+
+                                    <p class="featured-block-text">Make a <strong>Donation</strong></p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                            <div class="featured-block d-flex justify-content-center align-items-center">
+                                <a href="donate.html" class="d-block">
+                                    <img src="{% static 'images/icons/scholarship.png'%}" class="featured-block-image img-fluid" alt="">
+
+                                    <p class="featured-block-text"><strong>Scholarship</strong> Program</p>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section> -->
+
+            
+
+
+          
+            
+            <section class=" section-padding" style="background-color: #5a6f80;">
+                <div class="container justify-content-center">
+                    <div class="row">
+                       <center> <h1>Be the Change You Wish to See: Join Our Volunteer Program Today!</h1>
+                        
+                        <h6> Together, We Can Make a Difference in the Lives That Need It Most. Your Time and Compassion Can Transform Communities.</h6>                
+                        <h1>Join-us </h1> 
+                        <button class="custom-btn" style="background-color: bisque; "> <a href="#vol" style="color: black;">Click Here</a></button>
+                    </center>
+
+                   
+                    </div>
+                </div>
+            </section>
+
+            
+
+            <section class="contact-section section-padding" id="">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-4 col-12 ms-auto mb-5 mb-lg-0">
+                            <div class="contact-info-wrap">
+                                <h2>Get in touch</h2>
+
+                                <div class="contact-image-wrap d-flex flex-wrap">
+                                    <img src="{% static 'images/vc.png'%}" class="img-fluid avatar-image" alt="">
+
+                                    <div class="d-flex flex-column justify-content-center ms-3">
+                                        <p class="mb-0">Vikram Chavan</p>
+                                        <p class="mb-0"><strong>Founder & President</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info">
+                                    <h5 class="mb-3">Contact Infomation</h5>
+
+                                    <p class="d-flex mb-2">
+                                        <i class="bi-geo-alt me-2"></i>
+                                        BJP Karyalay, Vasant Vihar Mhada Office Thane West 400610
+                                    </p>
+
+                                    <p class="d-flex mb-2">
+                                        <i class="bi-telephone me-2"></i>
+
+                                        <a href="tel: 9167910915">
+                                            9167910915
+                                        </a>
+                                    </p>
+
+                                    <p class="d-flex">
+                                        <i class="bi-envelope me-2"></i>
+
+                                        <a href="mailto:info@yourgmail.com">
+                                            enquiry@pragati-foundation.com
+                                        </a>
+                                    </p>
+
+                                    <!-- <a href="#" class="custom-btn btn mt-3">Get Direction</a> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5 col-12 mx-auto">
+                            <!-- Use Django messages -->
+                            {% if messages %}
+                                <div class="message-success" style="display:none;">
+                                    {% for message in messages %}
+                                        {{ message }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            
+                            <form class="custom-form contact-form" action="/contact" method="post" role="form">
+                                {% csrf_token %}
+                                <h2>Contact form</h2>
+                        
+                                <p class="mb-4">Or, you can just send an email:
+                                    <a href="#">info@charity.org</a>
+                                </p>
+                        
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <input type="text" name="f_name" id="first-name" class="form-control" placeholder="Your Name" required>
+                                    </div>
+                        
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <input type="text" name="l_name" id="last-name" class="form-control" placeholder="Last Name" required>
+                                    </div>
+                                </div>
+                        
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Enter Your Email" required>
+                        
+                                <textarea name="message" rows="5" class="form-control" id="message" placeholder="What can we help you?"></textarea>
+                        
+                                <input type="submit" class="form-control" value="Send Message" style="background: #5a6f80; color: white;">
+                            </form>
+                        </div>
+
+                        
+                        <script>
+                            // Check if the message-success div exists and contains text
+                            var successMessage = document.querySelector('.message-success');
+                        
+                            if (successMessage && successMessage.textContent.trim() !== "") {
+                                // Show a popup message
+                                alert(successMessage.textContent.trim());
+                            }
+                        </script>
+
+                    </div>
+<br><br>
+
+                    <div class="row ">
+<center>
+    <div class="col-lg-10">
+        <div class="col-lg-10 col-10" style="height: 400px; border-radius: 15px; overflow: hidden;">
+            <!-- Embedded Google Map -->
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.310361353113!2d72.96476097498132!3d19.225301082010304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b9daf55f275f%3A0x6843cfefd31cadef!2sVikram%20Chavan%20%7C%20BJP%20Karyalay%20Vasant%20Vihar!5e0!3m2!1sen!2sin!4v1727263212103!5m2!1sen!2sin"                 width="100%"
+                height="400"
+                style="border:0; border-radius: 15px;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+    
+                    </center>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="volunteer-section section-padding" id="vol">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12">
+                            <center><h2 class="text-white mb-4">Volunteer</h2></center>
+
+                            <form class="custom-form volunteer-form mb-5 mb-lg-0" action="/submit-valunteer" method="post">
+                                {% csrf_token %}
+                                <h3 class="mb-4">Become a volunteer today</h3>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-12">
+                                        <input type="text" name="name" id="volunteer-name" class="form-control" placeholder="Your Name" required>
+                                    </div>
+
+                                    <div class="col-lg-6 col-12">    
+                                        <input type="email" name="email" id="volunteer-email" class="form-control" placeholder="Enter Your Email" required>
+                                    </div>
+                                    
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-12">
+                                        <input type="tel" name="phone" id="volunteer-phone" class="form-control" placeholder="Your phone" required>
+                                    </div>
+
+                                    <div class="col-lg-6 col-12">
+                                        <select name="gender" id="volunteer-gender" class="form-control" required>
+                                            <option value="" disabled selected>Select Your Gender</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Prefer not to say">Prefer not to say</option>
+                                        </select>
+                                    </div>
+                                    
+                                    
+                                </div>
+
+                                <input type="date" name="dob" rows="2" id="volunteer-dob" class="form-control" placeholder="Enter Date of Birth">
+
+
+                                <input type="text" name="subject" rows="3" id="volunteer-subject" class="form-control" placeholder="Subject" required>
+
+                                <textarea name="message" rows="3" class="form-control" id="volunteer-message" placeholder="Why You want to Join Us?"></textarea required>
+
+                                <input type="submit" class="form-control" value="Submit" style="background: #5a6f80;color: white;">
+                            </form>
+                        </div>
+
+                        <div class="col-lg-6 col-14"><br><br><br><br><br>
+                            <img src="{% static 'images/2vol.png'%}" class="volunteer-image img-fluid" style="height: 400px; width: 400px;" alt="">
+
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-12 mb-4" style="width: 100px;">
+                        <img src="{% static 'images/logo.png' %}" class="logo img-fluid" alt="">
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mb-4">
+                        <h5 class="site-footer-title mb-3">Quick Links</h5>
+
+                        <ul class="footer-menu">
+                            <li class="footer-menu-item"><a href="{% url 'index' %}" class="footer-menu-link">Home</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'gallery' %}" class="footer-menu-link">Beneficiary</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'about' %}" class="footer-menu-link">About</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'contactus' %}" class="footer-menu-link">Become a volunteer</a></li>
+
+                            <li class="footer-menu-item"><a href="{% url 'donates' %}" class="footer-menu-link">Partner with us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mx-auto">
+                        <h5 class="site-footer-title mb-3">Contact Infomation</h5>
+
+                        <p class="text-white d-flex mb-2">
+                            <i class="bi-telephone me-2"></i>
+
+                            <a href="tel: 9167910915" class="site-footer-link">
+                                9167910915
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <i class="bi-envelope me-2"></i>
+
+                            <a href="mailto:info@yourgmail.com" class="site-footer-link">
+                                enquiry@pragati-foundation.com
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex mt-3">
+                            <i class="bi-geo-alt me-2"></i>
+                            BJP Karyalay, Vasant Vihar Mhada Office Thane West 400610
+                        </p>
+
+                        <!-- <a href="#" class="custom-btn btn mt-3">Get Direction</a> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-7 col-12">
+                            <p class="copyright-text mb-0">Copyright © 2024 Pragati Foundation.
+                        	</a></p>
+                        </div>
+                        
+                        <div class="col-lg-2 col-md-5 col-12 d-flex justify-content-end mx-auto">
+                            <ul class="social-icon">
+                                <!-- <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li> -->
+
+                                <li class="social-icon-item">
+                                    <a href="https://www.facebook.com/foundation.pragati" target="_blank" class="social-icon-link bi-facebook"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="https://www.instagram.com/pra.gatifoundation?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-icon-link bi-instagram"></a>
+                                </li>
+
+                                <!-- <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-linkedin"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-youtube"></a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="{% static 'js/jquery.min.js'%}"></script>
+        <script src="{% static 'js/bootstrap.min.js'%}"></script>
+        <script src="{% static 'js/jquery.sticky.js'%}"></script>
+        <script src="{% static 'js/click-scroll.js'%}"></script>
+        <script src="{% static 'js/counter.js'%}"></script>
+        <script src="{% static 'js/custom.js'%}"></script>
+
+    </body>
+</html>
