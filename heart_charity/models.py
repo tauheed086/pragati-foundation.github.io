@@ -4,7 +4,7 @@ from django.db import models
 
 class Volunteer(models.Model):
     name=models.CharField(max_length=30)
-    email=models.EmailField(max_length=50, null=True, blank=True)
+    email=models.CharField(max_length=50, null=True, blank=True)
     phone=models.CharField(max_length=12, null=True, blank=True)
     gender=models.CharField(max_length=6,null=True, blank=True)
     dob=models.DateField( null=True, blank=True)
@@ -16,7 +16,7 @@ class Volunteer(models.Model):
     
 class Contact(models.Model):
     name=models.CharField(max_length=30)
-    email=models.EmailField(max_length=50, null=True, blank=True)
+    email=models.CharField(max_length=50, null=True, blank=True)
     message=models.TextField()
 
     def __str__(self):
@@ -47,7 +47,7 @@ class Person(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     photo = models.ImageField(upload_to='photos/', null=True, blank=True)
     phone = models.CharField(max_length=10, null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
+    email = models.EmailField(max_length=30, null=True, blank=True)
     address = models.CharField(max_length=300, null=True, blank=True)
     disability_type = models.CharField(max_length=30, null=True, blank=True)
     dis_percentage = models.CharField(max_length=3, null=True, blank=True)

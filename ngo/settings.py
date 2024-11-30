@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # MySQL backend
         'NAME': 'pragati_foundation_db',       # Your database name
-        'USER': 'pragati_user',                # Your MySQL username
-        'PASSWORD': 'Tauheed123',                 # Your MySQL password
+        'USER': 'tauheed',                # Your MySQL username
+        'PASSWORD': 'tauheed123',                 # Your MySQL password
         'HOST': 'localhost',                   # Your database server address
         'PORT': '3306',                        # Default MySQL port
     }
